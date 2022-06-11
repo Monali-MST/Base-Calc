@@ -156,6 +156,11 @@ public class Home extends javax.swing.JFrame {
         hexLab.setText("Hexadecimal Number System :");
 
         allClear.setText(" Clear ");
+        allClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allClearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -246,17 +251,53 @@ public class Home extends javax.swing.JFrame {
     private void okbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okbtnActionPerformed
         BaseCal BC = new BaseCal();   
         String snum= numTF.getText();
-        StringBuilder res = BC.move10ToBin(snum);     
-        binTF.setText(String.valueOf(res));
+        
+        String base = baseCombo.getSelectedItem().toString();
+        if(base == "2"){
+            binTF.setText(snum);
+            
+            int res3 = BC.move2ToDec(snum);     
+            decTF.setText(String.valueOf(res3));          
+        }else if(base == "8"){
+            octTF.setText(snum);
+            
+            int res3 = BC.move8ToDec(snum);     
+            decTF.setText(String.valueOf(res3)); 
+        }else if(base == "10"){ 
+            
+            StringBuilder res1 = BC.move10ToBin(snum);     
+            binTF.setText(String.valueOf(res1));
+            
+            StringBuilder res2 = BC.move10ToOct(snum);     
+            octTF.setText(String.valueOf(res2));
+            
+            decTF.setText(snum);
+            
+            StringBuilder res4 = BC.move10ToHex(snum);     
+            hexTF.setText(String.valueOf(res4));
+        }else{
+            int res3 = BC.move16ToDec(snum);     
+            decTF.setText(String.valueOf(res3));
+            
+            hexTF.setText(snum);
+        }
     }//GEN-LAST:event_okbtnActionPerformed
 
     private void numClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numClearActionPerformed
-        // TODO add your handling code here:
+        numTF.setText("");
     }//GEN-LAST:event_numClearActionPerformed
 
     private void binTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_binTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_binTFActionPerformed
+
+    private void allClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allClearActionPerformed
+        
+        binTF.setText("");
+        octTF.setText("");
+        decTF.setText("");
+        hexTF.setText("");
+    }//GEN-LAST:event_allClearActionPerformed
 
     /**
      * @param args the command line arguments
