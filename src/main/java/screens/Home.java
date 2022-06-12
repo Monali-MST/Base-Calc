@@ -256,13 +256,27 @@ public class Home extends javax.swing.JFrame {
         if(base == "2"){
             binTF.setText(snum);
             
+            StringBuilder res2 = BC.move2ToOct(snum);     
+            octTF.setText(String.valueOf(res2)); 
+            
             int res3 = BC.move2ToDec(snum);     
-            decTF.setText(String.valueOf(res3));          
+            decTF.setText(String.valueOf(res3)); 
+            
+            StringBuilder res4 = BC.move2ToHex(snum);     
+            hexTF.setText(String.valueOf(res4));   
+            
         }else if(base == "8"){
+            StringBuilder res1 = BC.move8ToBin(snum);     
+            binTF.setText(String.valueOf(res1)); 
+            
             octTF.setText(snum);
             
             int res3 = BC.move8ToDec(snum);     
             decTF.setText(String.valueOf(res3)); 
+            
+            StringBuilder res4 = BC.move8ToHex(snum);     
+            hexTF.setText(String.valueOf(res4)); 
+           
         }else if(base == "10"){ 
             
             StringBuilder res1 = BC.move10ToBin(snum);     
@@ -276,6 +290,12 @@ public class Home extends javax.swing.JFrame {
             StringBuilder res4 = BC.move10ToHex(snum);     
             hexTF.setText(String.valueOf(res4));
         }else{
+            StringBuilder res1 = BC.move16ToBin(snum);     
+            binTF.setText(String.valueOf(res1)); 
+            
+            StringBuilder res2 = BC.move16ToOct(snum);     
+            octTF.setText(String.valueOf(res2)); 
+            
             int res3 = BC.move16ToDec(snum);     
             decTF.setText(String.valueOf(res3));
             

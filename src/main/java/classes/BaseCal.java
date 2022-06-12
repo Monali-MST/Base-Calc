@@ -7,7 +7,7 @@ public class BaseCal {
         
     }
 
-    //..............................................move from Dec to all..section............................... 
+    //..............................................move Dec to all..section............................... 
         public StringBuilder move10ToBin(String snum) {
 		int num = Integer.parseInt(snum);
 		StringBuilder sb = new StringBuilder();
@@ -58,7 +58,7 @@ public class BaseCal {
 		return result;
 	}
    	
-	//..............................................move from all to Dec..section...............................
+	//..............................................move all to Dec..section...............................
 
 	public int move2ToDec(String snum){			//3,4,5,6,7,8,9,.. bin system eke ne. ehem thiyen no ek input krot....
 		int num = Integer.parseInt(snum);
@@ -119,8 +119,64 @@ public class BaseCal {
 		}
 		return tot;
 	}
-
-
+        //..............................................move Bin to Oct..section...............................
+        
+        public StringBuilder move2ToOct(String snum) {
+            int dec = move2ToDec(snum);
+            String sdec = String.valueOf(dec);
+                        
+            return move10ToOct(sdec);
+        }
+        
+        //..............................................move Bin to Hex..section...............................
+        
+        public StringBuilder move2ToHex(String snum) {
+            int dec = move2ToDec(snum);
+            String sdec = String.valueOf(dec);
+            
+            return move10ToHex(sdec);
+    
+        }
+        
+        //..............................................move Oct to Hex..section...............................
+        
+        public StringBuilder move8ToHex(String snum) {
+            int dec = move8ToDec(snum);
+            String sdec = String.valueOf(dec);
+            
+            return move10ToHex(sdec);
+    
+        }
+        
+        //..............................................move Hex to Oct..section...............................
+        
+        public StringBuilder move16ToOct(String snum) {           //cant enter A,B,C,D..
+            int dec = move16ToDec(snum);
+            String sdec = String.valueOf(dec);
+            
+            return move10ToOct(sdec);
+        }
+        
+        //..............................................move Oct to Bin..section...............................
+        
+        public StringBuilder move8ToBin(String snum) {
+            int dec = move8ToDec(snum);
+            String sdec = String.valueOf(dec);
+            
+            return move10ToBin(sdec);
+        }
+        
+        //..............................................move Hex to Bin..section...............................
+        
+        public StringBuilder move16ToBin(String snum) {
+            int dec = move8ToDec(snum);
+            String sdec = String.valueOf(dec);
+            
+            return move10ToBin(sdec);
+    
+        }
 //...................End of logical oparatings................................................................
+
+
 }
 
