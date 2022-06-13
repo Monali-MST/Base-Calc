@@ -54,7 +54,7 @@ public class BaseCal {
    	
 	//..............................................move all to Dec..section...............................
 
-	public int move2ToDec(String snum){			//3,4,5,6,7,8,9,.. bin system eke ne. ehem thiyen no ek input krot....
+	public int move2ToDec(String snum){			
 		int num = Integer.parseInt(snum);
 		int mod=0;
 		int tot=0;
@@ -70,7 +70,7 @@ public class BaseCal {
 
 
 
-	public int move8ToDec(String snum){                            //8,9 oct system eke ne
+	public int move8ToDec(String snum){                           
 		int num = Integer.parseInt(snum);
 		int mod=0;
 		int tot=0;
@@ -91,24 +91,28 @@ public class BaseCal {
 		StringBuilder sb = new StringBuilder();
 		sb.append(snum);
 		int len = sb.length();
-		int mod=0;
+		int lastbit=0;
 		int tot=0;
 		int x=0;
 		for(int i=len-1;i>=0;i--){
 			char ch = sb.charAt(i);
 			String s1= String.valueOf(ch);
-			if(null==s1){
-                            mod = Integer.parseInt(s1);
-                        }else mod = switch (s1) {
-                            case "A" -> 10;
-                            case "B" -> 11;
-                            case "C" -> 12;
-                            case "D" -> 13;
-                            case "E" -> 14;
-                            case "F" -> 15;
-                            default -> Integer.parseInt(s1);
-                        };
-			tot+=Math.pow(16,x)*mod; 
+			if("A".equalsIgnoreCase(s1)){
+                            lastbit = 10;
+                        } else if("B".equalsIgnoreCase(s1)){
+                            lastbit = 11;
+                        }else if("C".equalsIgnoreCase(s1)){
+                            lastbit = 12;
+                        }else if("D".equalsIgnoreCase(s1)){
+                            lastbit = 13;
+                        }else if("E".equalsIgnoreCase(s1)){
+                            lastbit = 14;
+                        }else if("F".equalsIgnoreCase(s1)){
+                            lastbit = 15;
+                        }else{
+                            lastbit = Integer.parseInt(s1);
+                        }
+                        tot+=Math.pow(16,x)*lastbit; 
 			x+=1;
 		}
 		return tot;
@@ -144,7 +148,7 @@ public class BaseCal {
         
         //..............................................move Hex to Oct..section...............................
         
-        public StringBuilder move16ToOct(String snum) {           //cant enter A,B,C,D..
+        public StringBuilder move16ToOct(String snum) {          
             int dec = move16ToDec(snum);
             String sdec = String.valueOf(dec);
             
@@ -163,7 +167,7 @@ public class BaseCal {
         //..............................................move Hex to Bin..section...............................
         
         public StringBuilder move16ToBin(String snum) {
-            int dec = move8ToDec(snum);
+            int dec = move16ToDec(snum);
             String sdec = String.valueOf(dec);
             
             return move10ToBin(sdec);
