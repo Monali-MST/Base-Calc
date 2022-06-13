@@ -38,21 +38,15 @@ public class BaseCal {
 		while (num>0){
 			int lastBit = num%16;
 			num = Math.floorDiv(num, 16);
-			if(lastBit==10){
-				sb.append("A");
-			}else if(lastBit==11){
-				sb.append("B");
-			}else if(lastBit==12){
-				sb.append("C");
-			}else if(lastBit==13){
-				sb.append("D");
-			}else if(lastBit==14){
-				sb.append("E");
-			}else if(lastBit==15){
-				sb.append("F");
-			}else{
-				sb.append(lastBit);
-			}
+                    switch (lastBit) {
+                        case 10 -> sb.append("A");
+                        case 11 -> sb.append("B");
+                        case 12 -> sb.append("C");
+                        case 13 -> sb.append("D");
+                        case 14 -> sb.append("E");
+                        case 15 -> sb.append("F");
+                        default -> sb.append(lastBit);
+                    }
 		}
 		StringBuilder result =sb.reverse();
 		return result;

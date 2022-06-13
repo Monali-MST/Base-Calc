@@ -2,6 +2,8 @@
 package screens;
 
 import classes.BaseCal;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Home extends javax.swing.JFrame {
 
@@ -249,58 +251,65 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_numTFActionPerformed
 
     private void okbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okbtnActionPerformed
-        BaseCal BC = new BaseCal();   
-        String snum= numTF.getText();
-        
-        String base = baseCombo.getSelectedItem().toString();
-        if(base == "2"){
-            binTF.setText(snum);
-            
-            StringBuilder res2 = BC.move2ToOct(snum);     
-            octTF.setText(String.valueOf(res2)); 
-            
-            int res3 = BC.move2ToDec(snum);     
-            decTF.setText(String.valueOf(res3)); 
-            
-            StringBuilder res4 = BC.move2ToHex(snum);     
-            hexTF.setText(String.valueOf(res4));   
-            
-        }else if(base == "8"){
-            StringBuilder res1 = BC.move8ToBin(snum);     
-            binTF.setText(String.valueOf(res1)); 
-            
-            octTF.setText(snum);
-            
-            int res3 = BC.move8ToDec(snum);     
-            decTF.setText(String.valueOf(res3)); 
-            
-            StringBuilder res4 = BC.move8ToHex(snum);     
-            hexTF.setText(String.valueOf(res4)); 
-           
-        }else if(base == "10"){ 
-            
-            StringBuilder res1 = BC.move10ToBin(snum);     
-            binTF.setText(String.valueOf(res1));
-            
-            StringBuilder res2 = BC.move10ToOct(snum);     
-            octTF.setText(String.valueOf(res2));
-            
-            decTF.setText(snum);
-            
-            StringBuilder res4 = BC.move10ToHex(snum);     
-            hexTF.setText(String.valueOf(res4));
-        }else{
-            StringBuilder res1 = BC.move16ToBin(snum);     
-            binTF.setText(String.valueOf(res1)); 
-            
-            StringBuilder res2 = BC.move16ToOct(snum);     
-            octTF.setText(String.valueOf(res2)); 
-            
-            int res3 = BC.move16ToDec(snum);     
-            decTF.setText(String.valueOf(res3));
-            
-            hexTF.setText(snum);
+        try {
+            BaseCal BC = new BaseCal();   
+            String snum= numTF.getText(); 
+
+            String base = baseCombo.getSelectedItem().toString();
+            if(null == base){
+                StringBuilder res1 = BC.move16ToBin(snum);     
+                binTF.setText(String.valueOf(res1));
+
+                StringBuilder res2 = BC.move16ToOct(snum);     
+                octTF.setText(String.valueOf(res2));
+
+                int res3 = BC.move16ToDec(snum);     
+                decTF.setText(String.valueOf(res3));
+
+                hexTF.setText(snum);
+            }else switch (base) {
+                case "2" ->                 {
+                        binTF.setText(snum);
+                        StringBuilder res2 = BC.move2ToOct(snum);
+                        octTF.setText(String.valueOf(res2));
+                        int res3 = BC.move2ToDec(snum);
+                        decTF.setText(String.valueOf(res3));
+                        StringBuilder res4 = BC.move2ToHex(snum);
+                        hexTF.setText(String.valueOf(res4));
+                    }
+                case "8" ->                 {
+                        StringBuilder res1 = BC.move8ToBin(snum);
+                        binTF.setText(String.valueOf(res1));
+                        octTF.setText(snum);
+                        int res3 = BC.move8ToDec(snum);
+                        decTF.setText(String.valueOf(res3));
+                        StringBuilder res4 = BC.move8ToHex(snum);
+                        hexTF.setText(String.valueOf(res4));
+                    }
+                case "10" ->                 {
+                        StringBuilder res1 = BC.move10ToBin(snum);
+                        binTF.setText(String.valueOf(res1));
+                        StringBuilder res2 = BC.move10ToOct(snum);
+                        octTF.setText(String.valueOf(res2));
+                        decTF.setText(snum);
+                        StringBuilder res4 = BC.move10ToHex(snum);
+                        hexTF.setText(String.valueOf(res4));
+                    }
+                default ->                 {
+                            StringBuilder res1 = BC.move16ToBin(snum);
+                            binTF.setText(String.valueOf(res1));
+                            StringBuilder res2 = BC.move16ToOct(snum);
+                            octTF.setText(String.valueOf(res2));
+                            int res3 = BC.move16ToDec(snum);
+                            decTF.setText(String.valueOf(res3));
+                            hexTF.setText(snum);
+                    }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(new JFrame(), e); 
         }
+        
+
     }//GEN-LAST:event_okbtnActionPerformed
 
     private void numClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numClearActionPerformed
@@ -331,15 +340,11 @@ public class Home extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
